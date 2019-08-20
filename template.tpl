@@ -22,22 +22,23 @@ ___TEMPLATE_PARAMETERS___
 
 [
   {
+    "help": "This is your unique company id in the Bucksense platform. Ask your account manager your ID or retrieve it from our console",
     "displayName": "Company ID",
     "simpleValueType": true,
     "name": "company_ID",
     "type": "TEXT",
-    "canBeEmptyString": true,
-    "help": "This is your unique company id in the Bucksense platform. Ask your account manager your ID or retrieve it from our console"
+    "canBeEmptyString": true
   },
   {
+    "help": "This it the product/flow offer ID. You can take this from the bucksense console. This is not a mandatory field if you are passing the Company ID. It is suggested to pass the Offer ID if you are promoting multiple products/flows on the same site/app",
     "displayName": "Offer ID (not mandatory)",
     "simpleValueType": true,
     "name": "offer_ID",
     "type": "TEXT",
-    "canBeEmptyString": true,
-    "help": "This it the product/flow offer ID. You can take this from the bucksense console. This is not a mandatory field if you are passing the Company ID. It is suggested to pass the Offer ID if you are promoting multiple products/flows on the same site/app"
+    "canBeEmptyString": true
   },
   {
+    "help": "This is the kind of event you are tracking. Conversion or a funnel event (1 to 6)",
     "selectItems": [
       {
         "displayValue": "This is a conversion",
@@ -68,38 +69,37 @@ ___TEMPLATE_PARAMETERS___
         "value": 6
       },
       {
-        "value": -1,
-        "displayValue": "I want to trigger a specific event id (apply code on EventID field)"
+        "displayValue": "I want to trigger a specific event id (apply code on EventID field)",
+        "value": -1
       }
     ],
     "displayName": "Type of event",
     "simpleValueType": true,
     "name": "kindofconversion",
-    "type": "SELECT",
-    "help": "This is the kind of event you are tracking. Conversion or a funnel event (1 to 6)"
+    "type": "SELECT"
   },
   {
-    "type": "TEXT",
-    "name": "transaction_ID",
+    "help": "This field is used to pass transaction id in case of S2S tracking system (not using cookies). Not mandatory",
     "displayName": "Transaction ID (not mandatory)",
     "simpleValueType": true,
-    "canBeEmptyString": true,
-    "help": "This field is used to pass transaction id in case of S2S tracking system (not using cookies). Not mandatory"
+    "name": "transaction_ID",
+    "type": "TEXT",
+    "canBeEmptyString": true
   },
   {
-    "type": "TEXT",
-    "name": "event_ID",
-    "displayName": "Event ID (not mandatory)",
-    "simpleValueType": true,
-    "canBeEmptyString": true,
+    "help": "Add here the Event ID specific to the OFFER. Only be used in case of specific event triggering",
     "enablingConditions": [
       {
         "paramName": "kindofconversion",
-        "paramValue": -1,
-        "type": "EQUALS"
+        "type": "EQUALS",
+        "paramValue": -1
       }
     ],
-    "help": "Add here the Event ID specific to the OFFER. Only be used in case of specific event triggering"
+    "displayName": "Event ID (not mandatory)",
+    "simpleValueType": true,
+    "name": "event_ID",
+    "type": "TEXT",
+    "canBeEmptyString": true
   }
 ]
 
@@ -187,11 +187,19 @@ const sendPixel = require('sendPixel');
 
 
 // Get the URL the user input into the text field
-const company_id = data.company_ID;
-const offer_id = data.offer_ID;
-const kindofconversion = data.kindofconversion;
-const event_ID = data.event_ID;
-const transaction_id = data.transaction_ID;
+var company_id = (data.company_ID);
+var offer_id = (data.offer_ID);
+var kindofconversion = data.kindofconversion;
+var event_ID = (data.event_ID);
+var transaction_id = (data.transaction_ID);
+
+if (company_id)  {  company_id = encodeUriComponent(company_id); }
+if (offer_id)    {  offer_id = encodeUriComponent(offer_id); }
+if (event_ID)    {  event_ID = encodeUriComponent(event_ID); }
+if (transaction_id)  {  transaction_id = encodeUriComponent(transaction_id); }
+
+
+
 
 var url = 'https://tracking.bucksense.com/ts_p?offer_id=<offer>&event_order=<order>&transaction_id=<transaction>&event_id=<event>&company_id=<company>&qs=&url=<query>';
 
@@ -249,4 +257,4 @@ if (queryPermission('send_pixel', newurl)) {
 
 ___NOTES___
 
-Created on 8/15/2019, 10:13:57 AM
+Created on 8/20/2019, 11:22:51 AM
