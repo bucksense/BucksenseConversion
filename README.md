@@ -1,15 +1,11 @@
-# BucksenseConversion
+# BucksenseAudience
 
-
-One Paragraph of project description goes here
+This is Bucksense Conversion template to track conversions on the Bucksense DSP platform
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Once you pick the template you will be asked to input your key parameters that you will receive from the Bucksense console
 
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
