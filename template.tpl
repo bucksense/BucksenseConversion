@@ -14,7 +14,7 @@ ___INFO___
 {
   "displayName": "Bucksense conversion pixel",
   "description": "This is the Bucksense conversion pixel to track conversions. Please visit https://howto.bucksense.com",
-   "categories": ["CONVERSION_TRACKING","ATTRIBUTION","ANALYTICS", "ADVERTISING"],
+   "categories": ["CONVERSIONS","ATTRIBUTION","ANALYTICS", "ADVERTISING"],
    "securityGroups": [],
   "id": "cvt_temp_public_id",
   "type": "TAG",
