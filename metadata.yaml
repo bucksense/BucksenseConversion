@@ -1,5 +1,5 @@
-homepage: "www.bucksense.com",
-documentation: "https://howto.bucksense.com",
+homepage: "www.bucksense.com"
+documentation: "https://howto.bucksense.com"
 versions:
   -
     sha: a123b4c5678defabc3
